@@ -4,17 +4,17 @@ const { Schema } = mongoose;
 const topicRelationSchema = new Schema({
   primaryId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Topic',
+    ref: 'topic',
   },
   relations: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Topic',
+      type: Schema.Types.ObjectId,
+      ref: 'topic',
     },
   ],
 });
 
 module.exports = TopicRelation = mongoose.model(
-  'topicRelation',
+  'topicrelation',
   topicRelationSchema
 );

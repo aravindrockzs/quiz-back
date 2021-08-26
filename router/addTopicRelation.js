@@ -3,12 +3,10 @@ const express = require('express');
 const router = express.Router();
 const TopicRelation = require('../models/topicRelationSchema');
 
-const Topic = require('../models/topicSchema');
-
 router.post('/topics/relations/add', (req, res) => {
   const topicRelation = new TopicRelation({
     primaryId: req.body.primaryId,
-    dependencies: req.body.dependencies,
+    relations: req.body.relations,
   });
 
   topicRelation.save(function (err) {
@@ -24,7 +22,7 @@ router.get('/topics/relations/aggregate/:primaryId', async (req, res) => {
       primaryId: req.params.primaryId,
     })
       .populate('primaryId')
-      .populate({ path: 'relations' })
+      .populate('relations')
       .exec();
 
     res.send(result);
