@@ -16,12 +16,6 @@ router.get('/topics/search/:name', async (req, res) => {
           },
         },
       },
-      {
-        $project: {
-          _id: 0,
-          name: 1,
-        },
-      },
     ]);
     res.send(result);
   } catch (err) {

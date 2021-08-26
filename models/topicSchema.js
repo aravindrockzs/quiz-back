@@ -18,10 +18,6 @@ const topicSchema = new Schema({
     type: String,
     required: true,
   },
-  relations: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Topics',
-  },
 });
 
 module.exports = Topic = mongoose.model('Topic', topicSchema);

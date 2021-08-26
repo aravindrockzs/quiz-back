@@ -11,39 +11,15 @@ app.use(express.json());
 
 require('dotenv').config();
 
-//model
-const Topic = require('./models/topicSchema');
-
 //routers
+const topic = require('./router/addTopic');
+const topicRelation = require('./router/addTopicRelation');
 
-const AddTopic = require('./router/addTopic');
-app.use(AddTopic);
+//middlewares for routing requests
+app.use([topic, topicRelation]);
 
 app.listen(process.env.PORT, () => {
   console.log('Listening at 3000');
-});
-
-app.get('/', (req, res) => {
-  res.sendFile('views/index.html', { root: __dirname });
-});
-
-app.get('/topics', async (req, res) => {
-  //  [
-  //     {
-  //       '$search': {
-  //         'index': 'movies',
-  //         'autocomplete': {
-  //           'query': 'test',
-  //           'path': 'title'
-  //         }
-  //       }
-  //     }, {
-  //       '$project': {
-  //         '_id': 0,
-  //         'title': 1
-  //       }
-  //     }
-  //  ]
 });
 
 mongoose.connect(process.env.ATLAS_URI, {
