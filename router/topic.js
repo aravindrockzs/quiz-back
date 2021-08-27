@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const Topic = require('../models/topicSchema');
+const Topic = require('../models/topic');
 
 router.get('/topics/search/:name', async (req, res) => {
   try {
@@ -17,7 +17,7 @@ router.get('/topics/search/:name', async (req, res) => {
         },
       },
     ]);
-    res.send(result);
+    res.json(result);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

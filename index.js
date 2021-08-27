@@ -12,11 +12,14 @@ app.use(express.json());
 require('dotenv').config();
 
 //routers
-const topic = require('./router/addTopic');
-const topicRelation = require('./router/addTopicRelation');
+const topic = require('./router/topic');
+const topicRelation = require('./router/topic_relation');
+const chapter = require('./router/chapter');
+const unit = require('./router/unit');
+const exam = require('./router/exam');
 
 //middlewares for routing requests
-app.use([topic, topicRelation]);
+app.use([topic, topicRelation, chapter, unit, exam]);
 
 app.listen(process.env.PORT, () => {
   console.log('Listening at 3000');
@@ -32,5 +35,5 @@ mongoose.connection
     console.log('quiz db connnected');
   })
   .on('error', (err) => {
-    logError(err);
+    console.log(err);
   });

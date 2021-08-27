@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const TopicRelation = require('../models/topicRelationSchema');
+const TopicRelation = require('../models/topic_relation');
 
 router.post('/topics/relations/add', (req, res) => {
   const topicRelation = new TopicRelation({
@@ -25,7 +25,7 @@ router.get('/topics/relations/aggregate/:primaryId', async (req, res) => {
       .populate('relations')
       .exec();
 
-    res.send(result);
+    res.json(result);
   } catch (err) {
     res.sendStatus(500).send({ message: err.message });
   }
